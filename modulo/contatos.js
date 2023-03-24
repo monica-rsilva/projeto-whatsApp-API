@@ -1,4 +1,4 @@
-export const contatos = { "whats-users" :
+const contatos = { "whats-users" :
                           [
                             {  
                               "id" : 1,    
@@ -568,3 +568,78 @@ export const contatos = { "whats-users" :
                             }
                           ]
                         }
+
+/******************************************************************************************
+ * Objetivo: Arquivo de funções para trazer informações referentes
+ * aos contatos do usuário.
+ * Autor: Mônica 
+ * Data: 24/03/2023
+ * Versão: 1.0
+ ******************************************************************************************/
+
+//  const getDadosUsuarios = function () {
+
+//   const listUsuariosJSON = {}
+//   const listDadosUsuarios = []
+
+//   contatos["whats-users"].forEach(function(dadosUser){
+    
+//       listDadosUsuarios.push({
+//         foto:dadosUser["profile-image"],
+//         nome:dadosUser.account,
+//         apelido:dadosUser.nickname,
+//         numero:dadosUser.number
+//       })
+    
+
+//     listUsuariosJSON.usuarios = listDadosUsuarios
+//   });
+// console.log(listDadosUsuarios)
+//   // return listUsuariosJSON
+  
+//  }
+
+/**************************************************
+ * teste
+***************************************************/
+
+const getDadosAccount = function (idUser) {
+
+  const listMessageJSON = {}
+  const listMessage = []
+  const contactsJSON = {}
+  const contacts = []
+  const dadosUser = {}
+
+  contatos["whats-users"].forEach(function(dadosNumero){
+
+    if(idUser == dadosNumero.id){
+      dadosNumero.contacts.forEach(function(contatos){
+        contacts.push(contatos.contacts)
+        contatos.messages.forEach(function(mensagens){
+          listMessage.push({person:mensagens.sender,message:mensagens.content,time:mensagens.time})
+        })
+      })
+    
+      listMessageJSON.contato = dadosNumero.number
+      listMessageJSON.mensagens = listMessage
+    }
+  });
+
+  return listMessageJSON
+
+}
+
+console.log(getDadosAccount(4))
+
+
+
+getDadosAccount();
+
+// getDadosUsuarios();
+
+ module.exports = {
+  //  getDadosUsuarios,
+   getDadosAccount
+ }
+
